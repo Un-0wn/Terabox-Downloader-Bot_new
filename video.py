@@ -99,17 +99,17 @@ async def upload_video(client, file_path, thumbnail_path, video_title, reply_msg
 
     with open(file_path, 'rb') as file:
         collection_message = await client.send_video(
-            chat_id=collection_channel_id,
+            # chat_id=collection_channel_id,
             video=file,
             caption=f"✨ {video_title}\n👤 ʟᴇᴇᴄʜᴇᴅ ʙʏ : {user_mention}\n📥 ᴜsᴇʀ ʟɪɴᴋ: tg://user?id={user_id}",
             thumb=thumbnail_path,
             progress=progress
         )
-        await client.copy_message(
-            chat_id=message.chat.id,
-            from_chat_id=collection_channel_id,
-            message_id=collection_message.id
-        )
+        # await client.copy_message(
+        #     chat_id=message.chat.id,
+        #     from_chat_id=collection_channel_id,
+        #     message_id=collection_message.id
+        # )
         await asyncio.sleep(1)
         await message.delete()
         await message.reply_sticker("CAACAgIAAxkBAAEZdwRmJhCNfFRnXwR_lVKU1L9F3qzbtAAC4gUAAj-VzApzZV-v3phk4DQE")
