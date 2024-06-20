@@ -30,12 +30,12 @@ bot_token = os.environ.get('BOT_TOKEN', '')
 if len(bot_token) == 0:
     logging.error("BOT_TOKEN variable is missing! Exiting now")
     exit(1)
-dump_id = os.environ.get('DUMP_CHAT_ID', '')
-if len(dump_id) == 0:
-    logging.error("DUMP_CHAT_ID variable is missing! Exiting now")
-    exit(1)
-else:
-    dump_id = int(dump_id)
+# dump_id = os.environ.get('DUMP_CHAT_ID', '')
+# if len(dump_id) == 0:
+#     logging.error("DUMP_CHAT_ID variable is missing! Exiting now")
+#     exit(1)
+# else:
+#     dump_id = int(dump_id)
 
 fsub_id = os.environ.get('FSUB_ID', '')
 if len(fsub_id) == 0:
@@ -91,7 +91,7 @@ async def handle_message(client, message: Message):
 
     try:
         file_path, thumbnail_path, video_title = await download_video(terabox_link, reply_msg, user_mention, user_id)
-        await upload_video(client, file_path, thumbnail_path, video_title, reply_msg, dump_id, user_mention, user_id, message)
+        await upload_video(client, file_path, thumbnail_path, video_title, reply_msg, "dump_id", user_mention, user_id, message)
     except Exception as e:
         logging.error(f"Error handling message: {e}")
         await reply_msg.edit_text("ғᴀɪʟᴇᴅ ᴛᴏ ᴘʀᴏᴄᴇss ʏᴏᴜʀ ʀᴇǫᴜᴇsᴛ.\nɪғ ʏᴏᴜʀ ғɪʟᴇ sɪᴢᴇ ɪs ᴍᴏʀᴇ ᴛʜᴀɴ 120ᴍʙ ɪᴛ ᴍɪɢʜᴛ ғᴀɪʟ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ.\nᴛʜɪs ɪs ᴛʜᴇ ᴛᴇʀᴀʙᴏx ɪssᴜᴇ, sᴏᴍᴇ ʟɪɴᴋs ᴀʀᴇ ʙʀᴏᴋᴇɴ, sᴏ ᴅᴏɴᴛ ᴄᴏɴᴛᴀᴄᴛ ʙᴏᴛ's ᴏᴡɴᴇʀ")
